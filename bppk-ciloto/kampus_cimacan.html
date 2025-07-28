@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visi dan Misi</title>
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: "Segoe UI","Helvetica Neue", Arial, "Noto Sans",
+      sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
+    }
+     .breadcrumb {
+      background-color: transparent;
+      margin-top: 20px;
+    }
+    header {
+      background-color: #00796b;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo{
+      color: cyan;
+      font: bold;
+    }
+    nav {
+      background-color: whitesmoke;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 14px 20px;
+      color: #00695c;
+      text-decoration: none;
+    }
+
+    nav ul li:hover {
+      background-color: lightgrey;
+    }
+    
+    .run-text{
+      background-color: #00695c;
+      color: white;
+    }
+
+    .search-container input {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+    }
+      .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: rgb(88, 175, 175);
+      z-index: 999;
+      min-width: 200px;
+    }
+
+    .submenu a {
+      padding: 10px 20px;
+      display: block;
+      color: white;
+    }
+
+    .submenu a:hover {
+      background-color: #004d40;
+      color: #ffffff;
+      cursor: pointer;
+}
+
+
+    .show-submenu {
+      display: block;
+    }
+
+    @media screen and (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+
+      nav ul li {
+        width: 100%;
+      }
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      display: none;
+    }
+    .overlay.show {
+      display: block;
+    }
+    footer {
+      background-color: rgb(0, 185, 173);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header style="background-color:047d78 ; color: rgb(0, 185, 173); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;">
+  <div class="d-flex align-items-center gap-2">
+    <img src="img/logo.png" alt="Logo BBPK Ciloto" style="height: 40px;">
+    <div class="logo">BBPK Ciloto</div>
+  </div>
+  <div class="search-container">
+    <input type="text" placeholder="Pencarian..." style="padding: 5px 10px; border: none; border-radius: 4px;">
+  </div>
+</header>
+
+
+  <nav>
+  <ul id="mainMenu">
+    <li><a href="index.html">BERANDA</a></li>
+    <li>
+      <a href="#" onclick="toggleSubmenu(event, 'profil')">PROFIL</a>
+      <div class="submenu" id="submenu-profil">
+        <a href="sejarah.html">Sejarah</a>
+        <a href="visimisi.html">Visi & Misi</a>
+        <a href="struktur.html">Struktur Organisasi</a>
+      </div>
+    </li>
+    <li>
+      <a href="#" onclick="toggleSubmenu(event, 'info')">FASILITAS</a>
+      <div class="submenu" id="submenu-info">
+        <a href="kampus_ciloto.html">Kampus Ciloto</a>
+        <a href="kampus_cimacan.html">Kampus Cimacan</a>
+        <a href="paket.html">Paket & Penawaran Khusus</a>
+      </div>
+    </li>
+    <li>
+      <a href="ppid.html">PPID</a>
+    </li>
+    <li><a href="media.html">MEDIA</a></li>
+    <li><a href="tautan.html">TAUTAN</a></li>
+    <li>
+    <a href="#" onclick="toggleSubmenu(event, 'faq')">FAQ</a>
+      <div class="submenu" id="submenu-faq">
+        <a href="informasi_umum.html">Informasi Umum</a>
+        <a href="panduan_pengguna.html">Panduan Penggunaan</a>
+        <a href="kebujakan_ketentuan.html">Kebijakan & Ketentuan</a>
+      </div>
+    </li>
+    <li> <a href="#" onclick="toggleSubmenu(event, 'kontak')">KONTAK KAMI</a>
+      <div class="submenu" id="submenu-kontak">
+        <a href="formulir_kontak.html">Formulir Kontak </a>
+        <a href="alamat_peta.html">Alamat & Peta Lokasi </a>
+        <a href="nomor_tlp.html">Nomor Telepon & Email </a>
+        <a href="medsos.html">Media Sosial </a>
+      </div>
+    </li>
+  </ul>
+</nav>
+  
+  <!-- Tombol navigasi -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Sebelumnya</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Berikutnya</span>
+  </button>
+</div>
+
+  <!-- Konten Utama -->
+ <!-- Breadcrumb -->
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Kampus Cimacan</li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- Konten -->
+  <div class="container mb-5">
+    <h2 class="mb-4">KAMPUS CIMACAN</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Sejarah BBPK Ciloto</h5>
+        <p class="visi">"Menjadi pusat pelatihan kesehatan yang unggul, profesional, dan berdaya saing tinggi di tingkat nasional maupun internasional."</p>
+      </div>
+      <div class="col-md-6">
+        <h5>Sejarah BBPK Ciloto</h5>
+        <ul>
+          
+        </ul>
+      </div>
+    </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 BBPK Ciloto - Kementerian Kesehatan RI</p>
+  </footer>
+
+  <script>
+
+    jelajahiBtn.addEventListener('click', (e) => {
+  // Scroll ke bagian layanan
+  const layananSection = document.getElementById('layanan');
+  layananSection.scrollIntoView({ behavior: 'smooth' });
+
+  // Tutup sidebar dan overlay
+  sidebar.classList.remove('show');
+  overlay.classList.remove('show');
+    });
+  </script>
+
+    <script>
+    function toggleSubmenu(e, menuId) {
+      e.preventDefault();
+      // Tutup semua submenu dulu
+      document.querySelectorAll(".submenu").forEach(sub => sub.classList.remove("show-submenu"));
+      // Tampilkan submenu yang diklik
+      document.getElementById("submenu-" + menuId).classList.toggle("show-submenu");
+    }
+
+    // Tutup submenu saat klik di luar area menu
+    document.addEventListener("click", function(e) {
+      if (!e.target.closest("nav")) {
+        document.querySelectorAll(".submenu").forEach(sub => sub.classList.remove("show-submenu"));
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
