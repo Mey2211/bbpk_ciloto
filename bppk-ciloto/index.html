@@ -98,6 +98,30 @@
       cursor: pointer;
 }
 
+.subsubmenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background-color: rgb(88, 175, 175);
+  min-width: 200px;
+  z-index: 9999;
+}
+
+.subsubmenu a {
+  padding: 10px 20px;
+  display: block;
+  color: white;
+}
+
+.subsubmenu a:hover {
+  background-color: #004d40;
+}
+
+.show-subsubmenu {
+  display: block;
+}
+
 
     .show-submenu {
       display: block;
@@ -153,18 +177,40 @@
       <a href="#" onclick="toggleSubmenu(event, 'profil')">PROFIL</a>
       <div class="submenu" id="submenu-profil">
         <a href="sejarah.html">Sejarah</a>
+        <a href="kedudukan.html">Kedudukan & Tugas Pokok</a>
         <a href="visimisi.html">Visi & Misi</a>
         <a href="struktur_organisasi.html">Struktur Organisasi</a>
+        <a href="sdm.html">SDM</a>
       </div>
     </li>
-    <li>
-      <a href="#" onclick="toggleSubmenu(event, 'info')">FASILITAS</a>
-      <div class="submenu" id="submenu-info">
-        <a href="kampus_ciloto.html">Kampus Ciloto</a>
-        <a href="kampus_cimacan.html">Kampus Cimacan</a>
-        <a href="paket.html">Paket & Penawaran Khusus</a>
+   <li>
+  <a href="#" onclick="toggleSubmenu(event, 'fasilitas')">FASILITAS</a>
+  <div class="submenu" id="submenu-fasilitas">
+    <div class="position-relative">
+      <a href="#" onclick="toggleSubSubmenu(event, 'kampus-ciloto')">Kampus Ciloto ▸</a>
+      <div class="subsubmenu" id="subsubmenu-kampus-ciloto">
+        <a href="wisma-cendrawasih.html">Wisma Cendrawasih</a>
+        <a href="wisma-candrawabuana.html">Wisma Candrawabuana</a>
+        <a href="wisma-candrakirana.html">Wisma Candrakirana</a>
+        <a href="wisma-candrahusada.html">Wisma Candrahusada</a>
+        <a href="wisma-candramuka.html">Wisma Candradimuka</a>
+        <a href="wisma-candraloka.html">Wisma Candraloka</a>
+         <a href="kelas-auditorium.html">Kelas dan Auditorium</a>
+        <a href="bungalow.html">Bungalow</a>
+        <a href="sarana-outbond.html">Sarana Outbond</a>
       </div>
-    </li>
+    </div>
+     <div class="position-relative">
+      <a href="#" onclick="toggleSubSubmenu(event, 'kampus-cimacan')">Kampus Cimacan ▸</a>
+      <div class="subsubmenu" id="subsubmenu-kampus-cimacan">
+        <a href="pondok-utama.html">Pondok Utama</a>
+        <a href="wisma-pondokan.html">Wisma Pondokan</a>
+        <a href="wisma-unit.html">Wisma Unit</a>
+      </div>
+    </div>
+  </div>
+</li>
+
     <li>
       <a href="ppid.html">PPID</a>
     </li>
@@ -304,15 +350,14 @@
 
   <script>
 
-    jelajahiBtn.addEventListener('click', (e) => {
-  // Scroll ke bagian layanan
-  const layananSection = document.getElementById('layanan');
-  layananSection.scrollIntoView({ behavior: 'smooth' });
+  function toggleSubSubmenu(e, subId) {
+    e.preventDefault();
+    // Tutup semua sub-submenu lainnya
+    document.querySelectorAll(".subsubmenu").forEach(sub => sub.classList.remove("show-subsubmenu"));
+    // Tampilkan yang diklik
+    document.getElementById("subsubmenu-" + subId).classList.toggle("show-subsubmenu");
+  }
 
-  // Tutup sidebar dan overlay
-  sidebar.classList.remove('show');
-  overlay.classList.remove('show');
-    });
   </script>
 
   <footer>

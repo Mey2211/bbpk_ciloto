@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Visi dan Misi</title>
+  <title>Struktur Organisasi</title>
 
   <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -18,10 +18,18 @@
       sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
       "Noto Color Emoji";
     }
-     .breadcrumb {
-      background-color: transparent;
-      margin-top: 20px;
-    }
+    .carousel-indicators [data-bs-target] {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #00796b;
+  opacity: 0.5;
+}
+
+.carousel-indicators .active {
+  opacity: 1;
+}
+
     header {
       background-color: #00796b;
       padding: 10px 20px;
@@ -90,6 +98,30 @@
       cursor: pointer;
 }
 
+.subsubmenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background-color: rgb(88, 175, 175);
+  min-width: 200px;
+  z-index: 9999;
+}
+
+.subsubmenu a {
+  padding: 10px 20px;
+  display: block;
+  color: white;
+}
+
+.subsubmenu a:hover {
+  background-color: #004d40;
+}
+
+.show-subsubmenu {
+  display: block;
+}
+
 
     .show-submenu {
       display: block;
@@ -124,6 +156,68 @@
       padding: 10px;
       margin-top: 30px;
     }
+
+     h2 {
+      color: #00796b;
+      font-weight: bold;
+    }
+
+    .org-structure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 40px 0;
+    }
+
+    .org-card {
+      text-align: center;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 20px;
+      width: 220px;
+      transition: transform 0.2s ease;
+    }
+
+    .org-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .org-card img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 100%;
+      border: 4px solid #00b9ad;
+      box-shadow: 0 0 8px rgba(0,0,0,0.15);
+      margin-bottom: 15px;
+    }
+
+    .org-card h6 {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #00796b;
+      margin-bottom: 5px;
+    }
+
+    .org-card small {
+      font-size: 0.95rem;
+      color: #00b9ad;
+    }
+
+    .level {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .org-card {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -145,18 +239,40 @@
       <a href="#" onclick="toggleSubmenu(event, 'profil')">PROFIL</a>
       <div class="submenu" id="submenu-profil">
         <a href="sejarah.html">Sejarah</a>
+        <a href="kedudukan.html">Kedudukan & Tugas Pokok</a>
         <a href="visimisi.html">Visi & Misi</a>
-        <a href="struktur.html">Struktur Organisasi</a>
+        <a href="struktur_organisasi.html">Struktur Organisasi</a>
+        <a href="sdm.html">SDM</a>
       </div>
     </li>
-    <li>
-      <a href="#" onclick="toggleSubmenu(event, 'info')">FASILITAS</a>
-      <div class="submenu" id="submenu-info">
-        <a href="kampus_ciloto.html">Kampus Ciloto</a>
-        <a href="kampus_cimacan.html">Kampus Cimacan</a>
-        <a href="paket.html">Paket & Penawaran Khusus</a>
+   <li>
+  <a href="#" onclick="toggleSubmenu(event, 'fasilitas')">FASILITAS</a>
+  <div class="submenu" id="submenu-fasilitas">
+    <div class="position-relative">
+      <a href="#" onclick="toggleSubSubmenu(event, 'kampus-ciloto')">Kampus Ciloto ▸</a>
+      <div class="subsubmenu" id="subsubmenu-kampus-ciloto">
+        <a href="wisma-cendrawasih.html">Wisma Cendrawasih</a>
+        <a href="wisma-candrawabuana.html">Wisma Candrawabuana</a>
+        <a href="wisma-candrakirana.html">Wisma Candrakirana</a>
+        <a href="wisma-candrahusada.html">Wisma Candrahusada</a>
+        <a href="wisma-candramuka.html">Wisma Candradimuka</a>
+        <a href="wisma-candraloka.html">Wisma Candraloka</a>
+         <a href="kelas-auditorium.html">Kelas dan Auditorium</a>
+        <a href="bungalow.html">Bungalow</a>
+        <a href="sarana-outbond.html">Sarana Outbond</a>
       </div>
-    </li>
+    </div>
+     <div class="position-relative">
+      <a href="#" onclick="toggleSubSubmenu(event, 'kampus-cimacan')">Kampus Cimacan ▸</a>
+      <div class="subsubmenu" id="subsubmenu-kampus-cimacan">
+        <a href="pondok-utama.html">Pondok Utama</a>
+        <a href="wisma-pondokan.html">Wisma Pondokan</a>
+        <a href="wisma-unit.html">Wisma Unit</a>
+      </div>
+    </div>
+  </div>
+</li>
+
     <li>
       <a href="ppid.html">PPID</a>
     </li>
@@ -180,57 +296,62 @@
     </li>
   </ul>
 </nav>
-  
-  <!-- Tombol navigasi -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Sebelumnya</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Berikutnya</span>
-  </button>
-</div>
 
-  <!-- Konten Utama -->
- <!-- Breadcrumb -->
-  <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Visi dan Misi</li>
-      </ol>
-    </nav>
+     <!-- Konten -->
+  <!-- Judul -->
+  <div class="container text-center my-4">
+    <h2>Struktur Organisasi</h2>
+    <p class="text-muted">Berikut adalah susunan struktur organisasi BBPK Ciloto yang mendukung penyelenggaraan pelatihan dan pengembangan SDM kesehatan.</p>
   </div>
 
-  <!-- Konten -->
-  <div class="container mb-5">
-    <h2 class="mb-4">VISI DAN MISI</h2>
+  <!-- Struktur Organisasi -->
+  <div class="container org-structure">
 
-    <div class="row">
-      <div class="col-md-6">
-        <h5>Visi BBPK Ciloto</h5>
-        <p class="visi">"Menjadi pusat pelatihan kesehatan yang unggul, profesional, dan berdaya saing tinggi di tingkat nasional maupun internasional."</p>
-      </div>
-      <div class="col-md-6">
-        <h5>Misi BBPK Ciloto</h5>
-        <ul>
-          <li>Meningkatkan kompetensi SDM kesehatan melalui pelatihan berkualitas.</li>
-          <li>Menyediakan fasilitas dan layanan pelatihan yang representatif dan modern.</li>
-          <li>Mendukung pengembangan SDM berbasis teknologi, evidence-based, dan inovasi.</li>
-          <li>Berperan aktif dalam pembangunan kesehatan nasional.</li>
-        </ul>
+    <!-- Kepala Pusat -->
+    <div class="level">
+      <div class="org-card">
+        <img src="img/foto1.jpeg" alt="Kepala Pusat">
+        <h6>dr. Andi Sutrisna, M.Kes</h6>
+        <small>Kepala BBPK Ciloto</small>
       </div>
     </div>
 
-    <div class="mt-4">
-      <h5>Tujuan Strategis BBPK Ciloto</h5>
-      <ol>
-        <li>Peningkatan derajat kesehatan masyarakat melalui pelatihan SDM berkualitas.</li>
-        <li>Peningkatan kemampuan teknis dan manajerial tenaga kesehatan.</li>
-        <li>Pengembangan sistem pelatihan berbasis digital dan kolaboratif.</li>
-        <li>Peningkatan daya saing dan profesionalitas lembaga pelatihan.</li>
-      </ol>
+    <!-- Manajerial -->
+    <div class="level">
+      <div class="org-card">
+        <img src="img/adm.jpg" alt="Kepala Administrasi">
+        <h6>Rina Pratiwi, SE</h6>
+        <small>Kepala Bagian Administrasi</small>
+      </div>
+      <div class="org-card">
+        <img src="img/pelatihan.jpg" alt="Koordinator Pelatihan">
+        <h6>Drs. Budi Santoso</h6>
+        <small>Koordinator Pelatihan</small>
+      </div>
+      <div class="org-card">
+        <img src="img/teknis.jpg" alt="Koordinator Teknis">
+        <h6>Eva Lestari, SKM</h6>
+        <small>Koordinator Sarana & Teknologi</small>
+      </div>
+    </div>
+
+    <!-- Staf -->
+    <div class="level">
+      <div class="org-card">
+        <img src="img/staf1.jpg" alt="Staf Keuangan">
+        <h6>Dina Kurniawati</h6>
+        <small>Staf Keuangan</small>
+      </div>
+      <div class="org-card">
+        <img src="img/staf2.jpg" alt="Staf IT">
+        <h6>Andika Nugraha</h6>
+        <small>Staf IT & Media</small>
+      </div>
+      <div class="org-card">
+        <img src="img/staf3.jpg" alt="Staf Pelatihan">
+        <h6>Lina Septiani</h6>
+        <small>Staf Pelatihan</small>
+      </div>
     </div>
   </div>
 
@@ -239,17 +360,17 @@
     <p>&copy; 2025 BBPK Ciloto - Kementerian Kesehatan RI</p>
   </footer>
 
+ 
   <script>
 
-    jelajahiBtn.addEventListener('click', (e) => {
-  // Scroll ke bagian layanan
-  const layananSection = document.getElementById('layanan');
-  layananSection.scrollIntoView({ behavior: 'smooth' });
+  function toggleSubSubmenu(e, subId) {
+    e.preventDefault();
+    // Tutup semua sub-submenu lainnya
+    document.querySelectorAll(".subsubmenu").forEach(sub => sub.classList.remove("show-subsubmenu"));
+    // Tampilkan yang diklik
+    document.getElementById("subsubmenu-" + subId).classList.toggle("show-subsubmenu");
+  }
 
-  // Tutup sidebar dan overlay
-  sidebar.classList.remove('show');
-  overlay.classList.remove('show');
-    });
   </script>
 
     <script>
