@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wisma Candrawasih</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    header {
+      background-color: #047d78;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: cyan;
+      font-weight: bold;
+    }
+
+    nav {
+      background-color: whitesmoke;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 14px 20px;
+      color: #00695c;
+      text-decoration: none;
+    }
+
+    nav ul li:hover {
+      background-color: lightgrey;
+    }
+
+    .submenu, .subsubmenu {
+      display: none;
+      position: absolute;
+      background-color: rgb(88, 175, 175);
+      min-width: 200px;
+      z-index: 999;
+    }
+
+    .submenu a, .subsubmenu a {
+      padding: 10px 20px;
+      display: block;
+      color: white;
+    }
+
+    .submenu a:hover, .subsubmenu a:hover {
+      background-color: #004d40;
+      color: #ffffff;
+    }
+
+    .subsubmenu {
+      left: 100%;
+      top: 0;
+    }
+
+    .show-submenu {
+      display: block;
+    }
+
+    .show-subsubmenu {
+      display: block;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .close-btn {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  padding: 5px 10px;
+  transition: background 0.3s ease;
+}
+.close-btn:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+
+    .info-box {
+      background-color: #4a9992;
+      color: white;
+      padding: 20px;
+      width: 45%;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 45%;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      display: block;
+      margin: 5% auto;
+      max-width: 90%;
+      max-height: 80vh;
+      animation: zoomIn 0.3s ease;
+      border-radius: 10px;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: white;
+      background-color: rgba(0,0,0,0.5);
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1000;
+      user-select: none;
+      border-radius: 50%;
+    }
+
+    .prev {
+      left: 30px;
+    }
+
+    .next {
+      right: 30px;
+    }
+
+    .nav:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .info-box,
+      .gallery {
+        width: 100%;
+      }
+
+      .nav {
+        font-size: 30px;
+        padding: 8px;
+      }
+    }
+
+    footer {
+      background-color: rgb(0, 185, 173);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="d-flex align-items-center gap-2">
+    <img src="img/logo.png" alt="Logo BBPK Ciloto" style="height: 40px;">
+    <div class="logo">BBPK Ciloto</div>
+  </div>
+  <div class="search-container">
+    <input type="text" placeholder="Pencarian...">
+  </div>
+</header>
+
+<nav>
+  <ul id="mainMenu">
+    <li><a href="index.html">BERANDA</a></li>
+    <li>
+      <a href="#" onclick="toggleSubmenu(event, 'profil')">PROFIL</a>
+      <div class="submenu" id="submenu-profil">
+        <a href="sejarah.html">Sejarah</a>
+        <a href="kedudukan.html">Kedudukan & Tugas Pokok</a>
+        <a href="visimisi.html">Visi & Misi</a>
+        <a href="struktur_organisasi.html">Struktur Organisasi</a>
+        <a href="sdm.html">SDM</a>
+      </div>
+    </li>
+    <li>
+      <a href="#" onclick="toggleSubmenu(event, 'fasilitas')">FASILITAS</a>
+      <div class="submenu" id="submenu-fasilitas">
+        <div>
+          <a href="#" onclick="toggleSubSubmenu(event, 'kampus-ciloto')">Kampus Ciloto ▸</a>
+          <div class="subsubmenu" id="subsubmenu-kampus-ciloto">
+            <a href="cendrawasih.html">Wisma Cendrawasih</a>
+            <a href="candrabuana.html">Wisma Candrabuana</a>
+            <a href="candrakirana.html">Wisma Candrakirana</a>
+            <a href="candrahusada.html">Wisma Candrahusada</a>
+            <a href="candradimuka.html">Wisma Candradimuka</a>
+            <a href="candraloka.html">Wisma Candraloka</a>
+            <a href="auditorium.html">Kelas dan Auditorium</a>
+            <a href="bungalow.html">Bungalow</a>
+            <a href="outbond.html">Sarana Outbond</a>
+          </div>
+        </div>
+        <div>
+          <a href="#" onclick="toggleSubSubmenu(event, 'kampus-cimacan')">Kampus Cimacan ▸</a>
+          <div class="subsubmenu" id="subsubmenu-kampus-cimacan">
+            <a href="pondok-utama.html">Pondok Utama</a>
+            <a href="wisma-pondokan.html">Wisma Pondokan</a>
+            <a href="wisma-unit.html">Wisma Unit</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a href="ppid.html">PPID</a></li>
+    <li><a href="media.html">MEDIA</a></li>
+    <li><a href="tautan.html">TAUTAN</a></li>
+    <li>
+      <a href="#" onclick="toggleSubmenu(event, 'kontak')">KONTAK KAMI</a>
+      <div class="submenu" id="submenu-kontak">
+        <a href="formulir_kontak.html">Formulir Kontak </a>
+        <a href="alamat_peta.html">Alamat & Peta Lokasi </a>
+        <a href="nomor_tlp.html">Nomor Telepon & Email </a>
+        <a href="medsos.html">Media Sosial </a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<div class="container">
+  <div class="info-box">
+    <h2>Wisma Cendrawasih</h2>
+    <p>Tipe: Standar</p>
+    <p>Kapasitas: 2 Kamar (7 pax)</p>
+    <ul>
+      <li>7 Single Bed</li>
+      <li>TV</li>
+      <li>Kamar Mandi Air Panas</li>
+      <li>Free Wifi</li>
+      <li>Lobby</li>
+      <li>Amenities (Shampo, Sabun, Sikat Gigi, Pasta Gigi)</li>
+    </ul>
+    <p>Harga: Rp. 1.012.000,00</p>
+  </div>
+
+  <div class="gallery">
+    <img src="img/cendrawasih1.jpg" alt="Foto 1" onclick="openModal(this.src)">
+    <img src="img/cendrawasih2.jpg" alt="Foto 2" onclick="openModal(this.src)">
+    <img src="img/cendrawasih3.jpg" alt="Foto 3" onclick="openModal(this.src)">
+    <img src="img/cendrawasih4.jpg" alt="Foto 4" onclick="openModal(this.src)">
+  </div>
+  <div style="display: flex; justify-content: center; margin-top: 30px;"></div>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15849.54625096889!2d107.
+  0023291!3d-6.7225963!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69b3faa2c1aee3%3A0x895a958e5fe1d46c!
+  2sBalai%20Besar%20Pelatihan%20Kesehatan%20(BBPK)%20Ciloto!5e0!3m2!1sen!2sid!4v1753877534855!5m2!1sen!2sid"
+  width="90%" 
+  height="450" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+</div>
+<div id="modal" class="modal">
+  <span class="close-btn" onclick="closeModal()">&#10006;</span>
+  <span class="nav prev" onclick="changeSlide(-1)">&#10094;</span>
+  <img class="modal-content" id="modalImg">
+  <span class="nav next" onclick="changeSlide(1)">&#10095;</span>
+</div>
+
+<footer>© 2025 BBPK Ciloto</footer>
+
+<script>
+  function toggleSubmenu(e, menuId) {
+    e.preventDefault();
+    document.querySelectorAll(".submenu").forEach(sub => sub.classList.remove("show-submenu"));
+    document.getElementById("submenu-" + menuId).classList.toggle("show-submenu");
+  }
+
+  function toggleSubSubmenu(e, subId) {
+    e.preventDefault();
+    document.querySelectorAll(".subsubmenu").forEach(sub => sub.classList.remove("show-subsubmenu"));
+    document.getElementById("subsubmenu-" + subId).classList.toggle("show-subsubmenu");
+  }
+
+  document.addEventListener("click", function(e) {
+    if (!e.target.closest("nav")) {
+      document.querySelectorAll(".submenu").forEach(sub => sub.classList.remove("show-submenu"));
+    }
+  });
+
+  const images = [
+    "img/cendrawasih1.jpg",
+    "img/cendrawasih2.jpg",
+    "img/cendrawasih3.jpg",
+    "img/cendrawasih4.jpg"
+  ];
+  let currentIndex = 0;
+
+  function openModal(src) {
+  event.stopPropagation();
+  
+  const cleanSrc = src.split("/").pop(); 
+  currentIndex = images.findIndex(image => image.includes(cleanSrc));
+  
+  if (currentIndex === -1) currentIndex = 0;
+
+  showImage(currentIndex);
+  document.getElementById("modal").style.display = "block";
+}
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+
+  function showImage(index) {
+    const modalImg = document.getElementById("modalImg");
+    modalImg.style.animation = "none";
+    modalImg.offsetHeight;
+    modalImg.style.animation = "zoomIn 0.3s ease";
+    modalImg.src = images[index];
+  }
+
+  function changeSlide(n) {
+    event.stopPropagation();
+    currentIndex = (currentIndex + n + images.length) % images.length;
+    showImage(currentIndex);
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowLeft") changeSlide(-1);
+    if (e.key === "ArrowRight") changeSlide(1);
+  });
+
+  document.getElementById("modal").addEventListener("click", function (e) {
+    if (e.target === this) {
+      closeModal();
+    }
+  });
+
+</script>
+</html>
