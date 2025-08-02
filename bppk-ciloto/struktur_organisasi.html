@@ -1,388 +1,171 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Struktur Organisasi</title>
-
-  <!-- Bootstrap & Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Struktur Organisasi BBPK Ciloto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      font-family: "Segoe UI","Helvetica Neue", Arial, "Noto Sans",
-      sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-      "Noto Color Emoji";
-    }
-    .carousel-indicators [data-bs-target] {
-  width: 10px;
-  height: 10px;
-  border-radius: 100%;
-  background-color: #00796b;
-  opacity: 0.5;
-}
-
-.carousel-indicators .active {
-  opacity: 1;
-}
-
-    header {
-      background-color: #00796b;
-      padding: 10px 20px;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo{
-      color: cyan;
-      font: bold;
-    }
-    nav {
-      background-color: whitesmoke;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-    }
-    nav ul li {
-      position: relative;
-    }
-
-    nav ul li a {
-      display: block;
-      padding: 14px 20px;
-      color: #00695c;
-      text-decoration: none;
-    }
-
-    nav ul li:hover {
-      background-color: lightgrey;
-    }
-    
-    .run-text{
-      background-color: #00695c;
-      color: white;
-    }
-
-    .search-container input {
-      padding: 5px 10px;
-      border: none;
-      border-radius: 4px;
-    }
-      .submenu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: rgb(88, 175, 175);
-      z-index: 999;
-      min-width: 200px;
-    }
-
-    .submenu a {
-      padding: 10px 20px;
-      display: block;
-      color: white;
-    }
-
-    .submenu a:hover {
-      background-color: #004d40;
-      color: #ffffff;
-      cursor: pointer;
-}
-
-.subsubmenu {
-  display: none;
-  position: absolute;
-  left: 100%;
-  top: 0;
-  background-color: rgb(88, 175, 175);
-  min-width: 200px;
-  z-index: 9999;
-}
-
-.subsubmenu a {
-  padding: 10px 20px;
-  display: block;
-  color: white;
-}
-
-.subsubmenu a:hover {
-  background-color: #004d40;
-}
-
-.show-subsubmenu {
-  display: block;
-}
-
-
-    .show-submenu {
-      display: block;
-    }
-
-    @media screen and (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-      }
-
-      nav ul li {
-        width: 100%;
-      }
-    }
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: 999;
-      display: none;
-    }
-    .overlay.show {
-      display: block;
-    }
-    footer {
-      background-color: rgb(0, 185, 173);
-      color: white;
-      text-align: center;
-      padding: 10px;
-      margin-top: 30px;
-    }
-
-     h2 {
-      color: #00796b;
-      font-weight: bold;
+      background-color: #f8f9fa;
+      padding: 40px 20px;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     .org-structure {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
-      padding: 40px 0;
-    }
-
-    .org-card {
       text-align: center;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 20px;
-      width: 220px;
-      transition: transform 0.2s ease;
-    }
-
-    .org-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .org-card img {
-      width: 110px;
-      height: 110px;
-      object-fit: cover;
-      border-radius: 100%;
-      border: 4px solid #00b9ad;
-      box-shadow: 0 0 8px rgba(0,0,0,0.15);
-      margin-bottom: 15px;
-    }
-
-    .org-card h6 {
-      font-weight: bold;
-      font-size: 1.1rem;
-      color: #00796b;
-      margin-bottom: 5px;
-    }
-
-    .org-card small {
-      font-size: 0.95rem;
-      color: #00b9ad;
     }
 
     .level {
       display: flex;
       justify-content: center;
-      gap: 30px;
       flex-wrap: wrap;
+      margin-bottom: 40px;
     }
 
-    @media (max-width: 768px) {
-      .org-card {
-        width: 100%;
-      }
+    .org-card {
+      background: #ffffff;
+      border: 2px solid #e0e0e0;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      width: 250px;
+      margin: 20px;
+      padding: 20px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .org-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+
+    .org-card img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 2px solid #0d9488;
+    }
+
+    .org-card h6 {
+      margin: 5px 0 2px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .org-card small {
+      display: block;
+      font-weight: 500;
+      color: #333;
+    }
+      .org-card h6 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #333;
+      margin-top: 5px;
+    }
+    .modal-header.bg-teal {
+      background-color: #0d9488;
+      color: white;
+    }
+
+    .modal-body p {
+      margin: 6px 0;
     }
   </style>
 </head>
 <body>
-  <header style="background-color:047d78 ; color: rgb(0, 185, 173); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;">
-  <div class="d-flex align-items-center gap-2">
-    <img src="img/logo.png" alt="Logo BBPK Ciloto" style="height: 40px;">
-    <div class="logo">BBPK Ciloto</div>
-  </div>
-  <div class="search-container">
-    <input type="text" placeholder="Pencarian..." style="padding: 5px 10px; border: none; border-radius: 4px;">
-  </div>
-</header>
 
-
-  <nav>
-  <ul id="mainMenu">
-    <li><a href="index.html">BERANDA</a></li>
-    <li>
-      <a href="#" onclick="toggleSubmenu(event, 'profil')">PROFIL</a>
-      <div class="submenu" id="submenu-profil">
-        <a href="sejarah.html">Sejarah</a>
-        <a href="kedudukan.html">Kedudukan & Tugas Pokok</a>
-        <a href="visimisi.html">Visi & Misi</a>
-        <a href="struktur_organisasi.html">Struktur Organisasi</a>
-        <a href="sdm.html">SDM</a>
-      </div>
-    </li>
-   <li>
-  <a href="#" onclick="toggleSubmenu(event, 'fasilitas')">FASILITAS</a>
-  <div class="submenu" id="submenu-fasilitas">
-    <div class="position-relative">
-      <a href="#" onclick="toggleSubSubmenu(event, 'kampus-ciloto')">Kampus Ciloto ▸</a>
-      <div class="subsubmenu" id="subsubmenu-kampus-ciloto">
-        <a href="wisma-cendrawasih.html">Wisma Cendrawasih</a>
-        <a href="wisma-candrawabuana.html">Wisma Candrawabuana</a>
-        <a href="wisma-candrakirana.html">Wisma Candrakirana</a>
-        <a href="wisma-candrahusada.html">Wisma Candrahusada</a>
-        <a href="wisma-candramuka.html">Wisma Candradimuka</a>
-        <a href="wisma-candraloka.html">Wisma Candraloka</a>
-         <a href="kelas-auditorium.html">Kelas dan Auditorium</a>
-        <a href="bungalow.html">Bungalow</a>
-        <a href="sarana-outbond.html">Sarana Outbond</a>
-      </div>
-    </div>
-     <div class="position-relative">
-      <a href="#" onclick="toggleSubSubmenu(event, 'kampus-cimacan')">Kampus Cimacan ▸</a>
-      <div class="subsubmenu" id="subsubmenu-kampus-cimacan">
-        <a href="pondok-utama.html">Pondok Utama</a>
-        <a href="wisma-pondokan.html">Wisma Pondokan</a>
-        <a href="wisma-unit.html">Wisma Unit</a>
-      </div>
-    </div>
-  </div>
-</li>
-
-    <li>
-      <a href="ppid.html">PPID</a>
-    </li>
-    <li><a href="media.html">MEDIA</a></li>
-    <li><a href="tautan.html">TAUTAN</a></li>
-    <li> <a href="#" onclick="toggleSubmenu(event, 'kontak')">KONTAK KAMI</a>
-      <div class="submenu" id="submenu-kontak">
-        <a href="formulir_kontak.html">Formulir Kontak </a>
-        <a href="alamat_peta.html">Alamat & Peta Lokasi </a>
-        <a href="nomor_tlp.html">Nomor Telepon & Email </a>
-        <a href="medsos.html">Media Sosial </a>
-      </div>
-    </li>
-  </ul>
-</nav>
-
-     <!-- Konten -->
-  <!-- Judul -->
-  <div class="container text-center my-4">
-    <h2>Struktur Organisasi</h2>
-    <p class="text-muted">Berikut adalah susunan struktur organisasi BBPK Ciloto yang mendukung penyelenggaraan pelatihan dan pengembangan SDM kesehatan.</p>
-  </div>
-
-  <!-- Struktur Organisasi -->
   <div class="container org-structure">
+    <h2 class="mb-5 text-teal">Struktur Organisasi BBPK Ciloto</h2>
 
-    <!-- Kepala Pusat -->
+    <!-- Tingkat 1 -->
     <div class="level">
-      <div class="org-card">
-        <img src="img/foto1.jpeg" alt="Kepala Pusat">
-        <h6>dr. Andi Sutrisna, M.Kes</h6>
-        <small>Kepala BBPK Ciloto</small>
+      <div class="org-card" onclick="showDetail(this)"
+           data-nama="dr. RR Dhian Proboyekti, SKM, MA"
+           data-jabatan="Kepala BBPK Ciloto"
+           data-nik="196501051990032001"
+           data-email="dhian.proboyekti@bbpkciloto.go.id"
+           data-telepon="0812-1234-1234">
+        <img src="img/foto1.jpeg" alt="Kepala BBPK Ciloto">
+        <small>dr. RR Dhian Proboyekti, SKM, MA</small>
+        <h6>Kepala BBPK Ciloto</h6>
       </div>
     </div>
 
-    <!-- Manajerial -->
-    <div class="level">
-      <div class="org-card">
-        <img src="img/adm.jpg" alt="Kepala Administrasi">
-        <h6>Rina Pratiwi, SE</h6>
-        <small>Kepala Bagian Administrasi</small>
-      </div>
-      <div class="org-card">
-        <img src="img/pelatihan.jpg" alt="Koordinator Pelatihan">
-        <h6>Drs. Budi Santoso</h6>
-        <small>Koordinator Pelatihan</small>
-      </div>
-      <div class="org-card">
-        <img src="img/teknis.jpg" alt="Koordinator Teknis">
-        <h6>Eva Lestari, SKM</h6>
-        <small>Koordinator Sarana & Teknologi</small>
-      </div>
+    <!-- Tingkat 2 -->
+      <div class="level">
+    <div class="org-card" onclick="showDetail(this)"
+         data-nama="Fedrik Lumbantobing, SE, MKM"
+         data-jabatan="Kepala Subbagian Administrasi Umum"
+         data-nik="197804112006041002"
+         data-email="fedrik.lumbantobing@bbpkciloto.go.id"
+         data-telepon="0812-5678-5678">
+      <img src="img/foto1.jpeg" alt="Kepala Subbagian Administrasi">
+      <small>Fedrik Lumbantobing, SE, MKM</small>
+      <h6>Kepala Subbag. Administrasi Umum</h6>
     </div>
+  </div>
 
-    <!-- Staf -->
+    <!-- Tingkat 3 -->
     <div class="level">
-      <div class="org-card">
-        <img src="img/staf1.jpg" alt="Staf Keuangan">
-        <h6>Dina Kurniawati</h6>
-        <small>Staf Keuangan</small>
+      <div class="org-card" onclick="showDetail(this)"
+           data-nama="dr. Linda Permatasari"
+           data-jabatan="Instalasi Pelatihan"
+           data-nik="197905012005012003"
+           data-email="linda.permatasari@bbpkciloto.go.id"
+           data-telepon="0812-1111-0001">
+        <img src="img/logo.png" alt="Pelatihan">
+        <h6>Instalasi Pelatihan</h6>
+        <small></small>
       </div>
-      <div class="org-card">
-        <img src="img/staf2.jpg" alt="Staf IT">
-        <h6>Andika Nugraha</h6>
-        <small>Staf IT & Media</small>
-      </div>
-      <div class="org-card">
-        <img src="img/staf3.jpg" alt="Staf Pelatihan">
-        <h6>Lina Septiani</h6>
-        <small>Staf Pelatihan</small>
+
+      <div class="org-card" onclick="showDetail(this)"
+           data-nama="Ir. Hendra Wijaya"
+           data-jabatan="Kelompok Jabatan Fungsional"
+           data-nik="197203042000121004"
+           data-email="hendra.wijaya@bbpkciloto.go.id"
+           data-telepon="0812-1111-0002">
+        <img src="img/logo.png" alt="Fungsional">
+        <h6>Kelompok Jabatan Fungsional</h6>
+        <small></small>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 BBPK Ciloto - Kementerian Kesehatan RI</p>
-  </footer>
+  <!-- Modal Detail Pegawai -->
+  <div class="modal fade" id="pegawaiModal" tabindex="-1" aria-labelledby="pegawaiModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-teal">
+          <h5 class="modal-title" id="pegawaiModalLabel">Detail Pegawai</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Nama:</strong> <span id="modalNama"></span></p>
+          <p><strong>Jabatan:</strong> <span id="modalJabatan"></span></p>
+          <p><strong>NIK:</strong> <span id="modalNIK"></span></p>
+          <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+          <p><strong>No. Telepon:</strong> <span id="modalTelepon"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
- 
-  <script>
-
-  function toggleSubSubmenu(e, subId) {
-    e.preventDefault();
-    // Tutup semua sub-submenu lainnya
-    document.querySelectorAll(".subsubmenu").forEach(sub => sub.classList.remove("show-subsubmenu"));
-    // Tampilkan yang diklik
-    document.getElementById("subsubmenu-" + subId).classList.toggle("show-subsubmenu");
-  }
-
-  </script>
-
-    <script>
-    function toggleSubmenu(e, menuId) {
-      e.preventDefault();
-      // Tutup semua submenu dulu
-      document.querySelectorAll(".submenu").forEach(sub => sub.classList.remove("show-submenu"));
-      // Tampilkan submenu yang diklik
-      document.getElementById("submenu-" + menuId).classList.toggle("show-submenu");
-    }
-
-    // Tutup submenu saat klik di luar area menu
-    document.addEventListener("click", function(e) {
-      if (!e.target.closest("nav")) {
-        document.querySelectorAll(".submenu").forEach(sub => sub.classList.remove("show-submenu"));
-      }
-    });
-  </script>
-
+  <!-- Script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function showDetail(el) {
+      document.getElementById('modalNama').textContent = el.getAttribute('data-nama');
+      document.getElementById('modalJabatan').textContent = el.getAttribute('data-jabatan');
+      document.getElementById('modalNIK').textContent = el.getAttribute('data-nik');
+      document.getElementById('modalEmail').textContent = el.getAttribute('data-email');
+      document.getElementById('modalTelepon').textContent = el.getAttribute('data-telepon');
 
+      const modal = new bootstrap.Modal(document.getElementById('pegawaiModal'));
+      modal.show();
+    }
+  </script>
 </body>
 </html>
