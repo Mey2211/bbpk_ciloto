@@ -2,86 +2,21 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Wisma Candrawasih</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wisma Cendrawasih</title>
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
   <style>
     body {
       margin: 0;
       padding: 0;
       overflow-x: hidden;
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    }
-
-    header {
-      background-color: #047d78;
-      padding: 10px 20px;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      color: cyan;
-      font-weight: bold;
-    }
-
-    nav {
-      background-color: whitesmoke;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    nav ul li {
-      position: relative;
-    }
-
-    nav ul li a {
-      display: block;
-      padding: 14px 20px;
-      color: #00695c;
-      text-decoration: none;
-    }
-
-    nav ul li:hover {
-      background-color: lightgrey;
-    }
-
-    .submenu, .subsubmenu {
-      display: none;
-      position: absolute;
-      background-color: rgb(88, 175, 175);
-      min-width: 200px;
-      z-index: 999;
-    }
-
-    .submenu a, .subsubmenu a {
-      padding: 10px 20px;
-      display: block;
-      color: white;
-    }
-
-    .submenu a:hover, .subsubmenu a:hover {
-      background-color: #004d40;
-      color: #ffffff;
-    }
-
-    .subsubmenu {
-      left: 100%;
-      top: 0;
-    }
-
-    .show-submenu {
-      display: block;
-    }
-
-    .show-subsubmenu {
-      display: block;
+      font-family: "Segoe UI","Helvetica Neue", Arial, "Noto Sans",
+      sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
     }
 
     .container {
@@ -94,24 +29,68 @@
       gap: 20px;
     }
     .close-btn {
-  position: fixed;
-  top: 20px;
-  right: 30px;
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
-  z-index: 1001;
-  background-color: rgba(0,0,0,0.5);
-  border-radius: 50%;
-  padding: 5px 10px;
-  transition: background 0.3s ease;
-}
-.close-btn:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-
-    .info-box {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+      z-index: 1001;
+      background-color: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      padding: 5px 10px;
+      transition: background 0.3s ease;
+    }
+    .close-btn:hover {
+      background-color: rgba(0,0,0,0.8);
+    } 
+    .dropdown-menu {
+      border-radius: 0 !important;
+    }
+    .dropdown-menu .dropdown-item {
+      color: white;
+    }
+    .dropdown-menu .dropdown-item:hover {
+      background-color: #004d40;
+      color: #ffffff;
+    }
+    .dropdown-submenu {
+      position: relative;
+    }
+    .dropdown-submenu > .dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-left: 0.1rem;
+      display: none;
+      background-color: rgb(88, 175, 175); 
+      border: none;
+    }
+    .dropdown-submenu:hover > .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu a.dropdown-item:hover {
+      background-color: #004d40;
+      color: #fff;
+    }
+    .dropdown-menu {
+      background-color: rgb(88, 175, 175);
+    }
+      footer {
+      background-color: rgb(0, 185, 173);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 30px;
+    }  
+       header {
+      background-color: #00796b;
+      padding: 10px 20px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+ .info-box {
       background-color: #4a9992;
       color: white;
       padding: 20px;
@@ -140,8 +119,107 @@
     .gallery img:hover {
       transform: scale(1.05);
     }
+    
+    .logo{
+      color: cyan;
+      font: bold;
+    }
+    nav {
+      background-color: whitesmoke;
+    }
 
-    .modal {
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 14px 20px;
+      color: #00695c;
+      text-decoration: none;
+    }
+
+    nav ul li:hover {
+      background-color: lightgrey;
+    }
+
+    .search-container input {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+    }
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: rgb(88, 175, 175);
+      z-index: 999;
+      min-width: 200px;
+    }
+    .submenu a {
+      padding: 10px 20px;
+      display: block;
+      color: white;
+    }
+    .submenu a:hover {
+      background-color: #004d40;
+      color: #ffffff;
+      cursor: pointer;
+        }
+    .subsubmenu {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      background-color: rgb(88, 175, 175);
+      min-width: 200px;
+      z-index: 9999;
+      color: white;
+    }
+    .subsubmenu a {
+      padding: 10px 20px;
+      display: block;
+      color: white;
+    }
+    .subsubmenu a:hover {
+      background-color: #004d40;
+    }
+    .show-subsubmenu {
+      display: block;
+    }
+    .show-submenu {
+      display: block;
+    }
+    @media screen and (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+
+      nav ul li {
+        width: 100%;
+      }
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      display: none;
+    }
+    .overlay.show {
+      display: block;
+    }
+   
+     .modal {
       display: none;
       position: fixed;
       z-index: 999;
@@ -200,9 +278,8 @@
     }
 
     @media screen and (max-width: 768px) {
-      .container {
+      nav ul {
         flex-direction: column;
-        align-items: center;
       }
 
       .info-box,
@@ -216,81 +293,94 @@
       }
     }
 
-    footer {
-      background-color: rgb(0, 185, 173);
-      color: white;
-      text-align: center;
-      padding: 10px;
-      margin-top: 30px;
-    }
   </style>
 </head>
 <body>
-
-<header>
+ <header style="background-color:047d78 ; color: rgb(0, 185, 173); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;">
   <div class="d-flex align-items-center gap-2">
     <img src="img/logo.png" alt="Logo BBPK Ciloto" style="height: 40px;">
-    <div class="logo">BBPK Ciloto</div>
+    <div class="logo fw-bold">BBPK Ciloto</div>
   </div>
   <div class="search-container">
-    <input type="text" placeholder="Pencarian...">
+    <input type="text" placeholder="Pencarian..." style="padding: 5px 10px; border: none; border-radius: 4px;">
   </div>
 </header>
 
-<nav>
-  <ul id="mainMenu">
-    <li><a href="index.html">BERANDA</a></li>
-    <li>
-      <a href="#" onclick="toggleSubmenu(event, 'profil')">PROFIL</a>
-      <div class="submenu" id="submenu-profil">
-        <a href="sejarah.html">Sejarah</a>
-        <a href="kedudukan.html">Kedudukan & Tugas Pokok</a>
-        <a href="visimisi.html">Visi & Misi</a>
-        <a href="struktur_organisasi.html">Struktur Organisasi</a>
-        <a href="sdm.html">SDM</a>
-      </div>
-    </li>
-    <li>
-      <a href="#" onclick="toggleSubmenu(event, 'fasilitas')">FASILITAS</a>
-      <div class="submenu" id="submenu-fasilitas">
-        <div>
-          <a href="#" onclick="toggleSubSubmenu(event, 'kampus-ciloto')">Kampus Ciloto ▸</a>
-          <div class="subsubmenu" id="subsubmenu-kampus-ciloto">
-            <a href="cendrawasih.html">Wisma Cendrawasih</a>
-            <a href="candrabuana.html">Wisma Candrabuana</a>
-            <a href="candrakirana.html">Wisma Candrakirana</a>
-            <a href="candrahusada.html">Wisma Candrahusada</a>
-            <a href="candradimuka.html">Wisma Candradimuka</a>
-            <a href="candraloka.html">Wisma Candraloka</a>
-            <a href="auditorium.html">Kelas dan Auditorium</a>
-            <a href="bungalow.html">Bungalow</a>
-            <a href="outbond.html">Sarana Outbond</a>
-          </div>
-        </div>
-        <div>
-          <a href="#" onclick="toggleSubSubmenu(event, 'kampus-cimacan')">Kampus Cimacan ▸</a>
-          <div class="subsubmenu" id="subsubmenu-kampus-cimacan">
-            <a href="pondok-utama.html">Pondok Utama</a>
-            <a href="wisma-pondokan.html">Wisma Pondokan</a>
-            <a href="wisma-unit.html">Wisma Unit</a>
-          </div>
-        </div>
-      </div>
-    </li>
-    <li><a href="ppid.html">PPID</a></li>
-    <li><a href="media.html">MEDIA</a></li>
-    <li><a href="tautan.html">TAUTAN</a></li>
-    <li>
-      <a href="#" onclick="toggleSubmenu(event, 'kontak')">KONTAK KAMI</a>
-      <div class="submenu" id="submenu-kontak">
-        <a href="formulir_kontak.html">Formulir Kontak </a>
-        <a href="alamat_peta.html">Alamat & Peta Lokasi </a>
-        <a href="nomor_tlp.html">Nomor Telepon & Email </a>
-        <a href="medsos.html">Media Sosial </a>
-      </div>
-    </li>
-  </ul>
+<nav class="navbar navbar-expand-lg" style="background-color: whitesmoke;">
+  <div class="container">   
+    <!-- Tombol Hamburger -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+      aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu Utama -->
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link text-success" href="index.html">BERANDA</a></li>
+
+        <!-- Dropdown PROFIL -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-success" href="#" role="button" data-bs-toggle="dropdown">PROFIL</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="sejarah.html">Sejarah</a></li>
+            <li><a class="dropdown-item" href="kedudukan.html">Kedudukan & Tugas Pokok</a></li>
+            <li><a class="dropdown-item" href="visimisi.html">Visi & Misi</a></li>
+            <li><a class="dropdown-item" href="struktur_organisasi.html">Struktur Organisasi</a></li>
+            <li><a class="dropdown-item" href="sdm.html">SDM</a></li>
+          </ul>
+        </li>
+
+        <!-- Dropdown FASILITAS dengan submenu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-success" href="#" role="button" data-bs-toggle="dropdown">FASILITAS</a>
+          <ul class="dropdown-menu">
+            <!-- Submenu 1 -->
+            <li class="dropdown-submenu">
+              <a class="dropdown-item dropdown-toggle" href="#" onclick="toggleSubSubmenu(event, 'kampus-ciloto')">Kampus Ciloto</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="cendrawasih.html">Wisma Cendrawasih</a></li>
+                <li><a class="dropdown-item" href="candrabuana.html">Wisma Candrabuana</a></li>
+                <li><a class="dropdown-item" href="candrakirana.html">Wisma Candrakirana</a></li>
+                <li><a class="dropdown-item" href="candrahusada.html">Wisma Candrahusada</a></li>
+                <li><a class="dropdown-item" href="candradimuka.html">Wisma Candradimuka</a></li>
+                <li><a class="dropdown-item" href="candraloka.html">Wisma Candraloka</a></li>
+                <li><a class="dropdown-item" href="auditorium.html">Kelas dan Auditorium</a></li>
+                <li><a class="dropdown-item" href="bungalow.html">Bungalow</a></li>
+                <li><a class="dropdown-item" href="outbond.html">Sarana Outbond</a></li>
+              </ul>
+            </li>
+            <!-- Submenu 2 -->
+            <li class="dropdown-submenu">
+              <a class="dropdown-item dropdown-toggle" href="#" onclick="toggleSubSubmenu(event, 'kampus-cimacan')">Kampus Cimacan</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="pondok-utama.html">Pondok Utama</a></li>
+                <li><a class="dropdown-item" href="wisma-pondokan.html">Wisma Pondokan</a></li>
+                <li><a class="dropdown-item" href="wisma-unit.html">Wisma Unit</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link text-success" href="ppid.html">PPID</a></li>
+        <li class="nav-item"><a class="nav-link text-success" href="media.html">MEDIA</a></li>
+        <li class="nav-item"><a class="nav-link text-success" href="tautan.html">TAUTAN</a></li>
+
+        <!-- KONTAK -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-success" href="#" role="button" data-bs-toggle="dropdown">KONTAK KAMI</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="formulir_kontak.html">Formulir Kontak</a></li>
+            <li><a class="dropdown-item" href="alamat_peta.html">Alamat & Peta Lokasi</a></li>
+            <li><a class="dropdown-item" href="nomor_tlp.html">Nomor Telepon & Email</a></li>
+            <li><a class="dropdown-item" href="medsos.html">Media Sosial</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
+
 
 <div class="container">
   <div class="info-box">
@@ -333,27 +423,47 @@
   <span class="nav next" onclick="changeSlide(1)">&#10095;</span>
 </div>
 
-<footer>© 2025 BBPK Ciloto</footer>
-
+  
+  <footer>
+    <p>&copy; 2025 BBPK Ciloto - Kementerian Kesehatan RI</p>
+  </footer>
 <script>
+  // Fungsi untuk toggle submenu (PROFIL, FASILITAS, KONTAK KAMI)
   function toggleSubmenu(e, menuId) {
     e.preventDefault();
-    document.querySelectorAll(".submenu").forEach(sub => sub.classList.remove("show-submenu"));
-    document.getElementById("submenu-" + menuId).classList.toggle("show-submenu");
+    e.stopPropagation();
+
+    // Tutup semua submenu yang lain
+    document.querySelectorAll(".submenu").forEach(s => s.classList.remove("show-submenu"));
+
+    // Buka atau tutup submenu yang diklik
+    const submenu = document.getElementById("submenu-" + menuId);
+    if (submenu) submenu.classList.toggle("show-submenu");
   }
 
+  // Fungsi untuk toggle subsubmenu (contoh: Kampus Ciloto, Kampus Cimacan)
   function toggleSubSubmenu(e, subId) {
     e.preventDefault();
-    document.querySelectorAll(".subsubmenu").forEach(sub => sub.classList.remove("show-subsubmenu"));
-    document.getElementById("subsubmenu-" + subId).classList.toggle("show-subsubmenu");
+    e.stopPropagation();
+
+    // Tutup semua subsubmenu yang lain
+    document.querySelectorAll(".subsubmenu").forEach(s => s.classList.remove("show-subsubmenu"));
+
+    // Buka atau tutup subsubmenu yang diklik
+    const subsubmenu = document.getElementById("subsubmenu-" + subId);
+    if (subsubmenu) subsubmenu.classList.toggle("show-subsubmenu");
   }
 
+  // Tutup semua submenu & subsubmenu jika klik di luar menu
   document.addEventListener("click", function(e) {
     if (!e.target.closest("nav")) {
-      document.querySelectorAll(".submenu").forEach(sub => sub.classList.remove("show-submenu"));
+      document.querySelectorAll(".submenu").forEach(s => s.classList.remove("show-submenu"));
+      document.querySelectorAll(".subsubmenu").forEach(s => s.classList.remove("show-subsubmenu"));
     }
   });
+</script>
 
+<script>
   const images = [
     "img/cendrawasih1.jpg",
     "img/cendrawasih2.jpg",
@@ -405,4 +515,9 @@
   });
 
 </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>
